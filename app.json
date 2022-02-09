@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ecommerce_client",
+    "slug": "ecommerce_client",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ecommerce_client"
+}
