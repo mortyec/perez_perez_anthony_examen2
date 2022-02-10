@@ -71,7 +71,7 @@ const Detail = ({ route, navigation, handleAddToCart }) => {
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
       <View>
         {/* header */}
-        <Header onPress={() => navigation.goBack()} />
+        <Header onPressBack={() => navigation.goBack()} />
         {/* image */}
         <View style={styles.wrapperImg}>
           <Image source={{ uri: `${item.img}` }} style={styles.image} />
