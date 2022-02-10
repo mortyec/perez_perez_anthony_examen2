@@ -38,6 +38,8 @@ const SigninScreen = ({ route, navigation }) => {
     const esContrasenaValida = adpp_validarPassword(password);
 
     console.log('el email', esCorreoValido);
+    console.log('la cedula', esCedulaValida);
+    console.log('la contraseña', esContrasenaValida);
   };
 
   //Validacion Correos
@@ -47,7 +49,6 @@ const SigninScreen = ({ route, navigation }) => {
   }
 
   function adpp_validarCedula(cedula) {
-    var valida = true;
     if(cedula.length == 10){
         
       //Obtenemos el digito de la region que sonlos dos primeros digitos
@@ -104,21 +105,21 @@ const SigninScreen = ({ route, navigation }) => {
         //Validamos que el digito validador sea igual al de la cedula
         if(digito_validador == ultimo_digito){
           console.log('la cedula:' + cedula + ' es correcta');
-          return valida = true;
+          return true;
         }else{
           console.log('la cedula:' + cedula + ' es incorrecta');
-          return valida = false;
+          return false;
         }
         
       }else{
         // imprimimos en consola si la region no pertenece
         console.log('Esta cedula no pertenece a ninguna region');
-        return valida = false;
+        return false;
       }
    }else{
       //imprimimos en consola si la cedula tiene mas o menos de 10 digitos
       console.log('Esta cedula tiene menos de 10 Digitos');
-      return valida = false;
+      return false;
    }    
   }
 
