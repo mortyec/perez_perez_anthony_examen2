@@ -19,6 +19,7 @@ const AuthLogin = async (body) => {
   }
 };
 
+
 const AuthSingup = async (body) => {
   try {
     const rta = await axiosRequest.post(`${API}/auth/signup`, body);

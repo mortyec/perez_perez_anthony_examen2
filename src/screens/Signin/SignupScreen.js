@@ -17,11 +17,10 @@ const SigninScreen = ({ route, navigation }) => {
   const { signUp } = useContext(AuthContext);
 
   const handleSignup = (username, email, password) => {
-    const t = signUp(username, email, password);
-    if (t != undefined) {
-      setCreado(true);
-      notifyMessage("Usuario creado correctamente");
-      navigation.navigate("GetStarted");
+    console.log("cedula", username, 'mail', email, "pass", password);
+
+    if (username === '' || email === '' || password === '') {
+      console.log("campos incompletos");
     }
   };
 
