@@ -21,8 +21,6 @@ const SigninScreen = ({ route, navigation }) => {
 
   const [correos, setCorreos] = useState([])
 
-
-  
   useEffect(() => {
     adpp_cargarUsuarios();
 
@@ -64,7 +62,7 @@ const SigninScreen = ({ route, navigation }) => {
     if(cedula.length == 10){
         
       //Obtenemos el digito de la region que sonlos dos primeros digitos
-      
+
       var digito_region = cedula.substring(0,2);
       
       //Pregunto si la region existe ecuador se divide en 24 regiones
