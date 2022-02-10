@@ -16,13 +16,47 @@ const SigninScreen = ({ route, navigation }) => {
 
   const { signUp } = useContext(AuthContext);
 
+  //username = cedula
   const handleSignup = (username, email, password) => {
     console.log("cedula", username, 'mail', email, "pass", password);
 
     if (username === '' || email === '' || password === '') {
       console.log("campos incompletos");
     }
+
+    if (ap_validarCedula(username)){
+      console.log("Cedula Correcta");
+    }else{
+      console.log("Cedula Incorrecta");
+    }
   };
+
+  const ap_validarCedula = (cedula) => {
+  
+      var ap_cedulaCorrecta = new Boolean(true);
+      try {
+          if (cedula.length() == 10) {
+              // Coeficientes de validación cédula
+              // El decimo digito se lo considera dígito verificador
+              let coefValCedula =[2, 1, 2, 1, 2, 1, 2, 1, 2];
+              let verificador = Integer.parseInt(cedula.substring(9, 10));
+              let suma = 0;
+              let digito = 0;
+              for (i = 0; i < (cedula.length() - 1); i++) {
+                  digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+                  suma += ((digito % 10) + (digito / 10));
+              }
+
+              ap_cedulaCorrecta = ((suma % 10 == 0 && verificador == 0) || (10 - suma % 10 == verificador));
+          } else {
+            ap_cedulaCorrecta = false;
+          }
+      } catch (error) {
+        ap_cedulaCorrecta = false;
+      }
+      return ap_cedulaCorrecta;
+  }
+  
 
   function notifyMessage(msg) {
     Alert.alert("Aviso", msg, [
@@ -40,7 +74,7 @@ const SigninScreen = ({ route, navigation }) => {
       <Gap height={60} />
 
       <TextInput
-        placeholder="Nombre de usuario"
+        placeholder="Cedula"
         style={styles.input}
         onChangeText={(text) => setUserName(text)}
       />
