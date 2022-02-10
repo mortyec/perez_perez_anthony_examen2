@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput, Alert } from "react-native";
 import { colors } from "../../assets";
 import { Button, Gap } from "../../components/atoms";
 
 import { AuthContext } from "../../components/context";
+
+import { getUsers } from '../../api'
 
 const SigninScreen = ({ route, navigation }) => {
   const [email, setEmail] = useState("");
@@ -16,26 +18,33 @@ const SigninScreen = ({ route, navigation }) => {
 
   const { signUp } = useContext(AuthContext);
 
+  const [correos, setCorreos] = useState([])
+  
+  useEffect(() => {
+    adpp_cargarUsuarios();
+
+  }, [])
+
+  const adpp_cargarUsuarios = async () => {
+    const rta = await getUsers()
+    const correos = rta.map(user => user.email)
+    setCorreos(correos)
+  }
+
   //username = cedula
   const handleSignup = (username, email, password) => {
-    console.log("cedula", username, 'mail', email, "pass", password);
+    const esCedulaValida = adpp_validarCedula(username);
+    const esCorreoValido = adpp_validarMail(email);
+    const esContrasenaValida = adpp_validarPassword(password);
 
-    if (username === '' || email === '' || password === '') {
-      console.log("campos incompletos");
-    }
-
-    if (adpp_validarCedula(username)){
-      console.log("Cedula Correcta");
-    }else{
-      console.log("Cedula Incorrecta");
-    }
-
-    if (adpp_checkPassword(password)){
-      console.log("Contraseña Correcta");
-    }else{
-      console.log("Contraseña Incorrecta");
-    }
+    console.log('el email', esCorreoValido);
   };
+
+  //Validacion Correos
+  const adpp_validarMail = (email) => {
+    const hay = correos.some(mail => mail === email);
+    return !hay;
+  }
 
   function adpp_validarCedula(cedula) {
     var valida = true;
@@ -113,9 +122,9 @@ const SigninScreen = ({ route, navigation }) => {
    }    
   }
 
-  function adpp_checkPassword(valor){
-    var myregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!.%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,10}$/; 
-   if(myregex.test(valor)){
+  function adpp_validarPassword(valor){
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!.%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,10}$/; 
+   if(regex.test(valor)){
       console.log(valor+" es valido :-) !");
        return true;        
    }else{
