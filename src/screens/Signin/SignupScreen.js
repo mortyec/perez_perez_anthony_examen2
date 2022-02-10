@@ -24,20 +24,20 @@ const SigninScreen = ({ route, navigation }) => {
       console.log("campos incompletos");
     }
 
-    if (ap_validarCedula(username)){
+    if (adpp_validarCedula(username)){
       console.log("Cedula Correcta");
     }else{
       console.log("Cedula Incorrecta");
     }
 
-    if (ap_checkPassword(password)){
-      console.log("Cedula Correcta");
+    if (adpp_checkPassword(password)){
+      console.log("Contraseña Correcta");
     }else{
       console.log("Contraseña Incorrecta");
     }
   };
 
-  function ap_validarCedula(cedula) {
+  function adpp_validarCedula(cedula) {
     var valida = true;
     if(cedula.length == 10){
         
@@ -113,8 +113,8 @@ const SigninScreen = ({ route, navigation }) => {
    }    
   }
 
-  function ap_checkPassword(valor){
-    var myregex = /^(?=.[a-z])(?=.[A-Z])(?=.[~'!@#$%^&)(-+=]).{6,10}$/; 
+  function adpp_checkPassword(valor){
+    var myregex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!.%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,10}$/; 
    if(myregex.test(valor)){
       console.log(valor+" es valido :-) !");
        return true;        
