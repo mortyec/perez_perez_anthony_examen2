@@ -17,7 +17,6 @@ const AuthLogin = async (body) => {
   } catch (error) {
     console.log(error);
   }
-  
 };
 
 
