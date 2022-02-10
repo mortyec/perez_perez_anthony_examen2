@@ -33,28 +33,25 @@ const SigninScreen = ({ route, navigation }) => {
 
   const ap_validarCedula = (cedula) => {
   
-      var ap_cedulaCorrecta = new Boolean(true);
-      try {
-          if (cedula.length() == 10) {
-              // Coeficientes de validación cédula
-              // El decimo digito se lo considera dígito verificador
-              let coefValCedula =[2, 1, 2, 1, 2, 1, 2, 1, 2];
-              let verificador = Integer.parseInt(cedula.substring(9, 10));
-              let suma = 0;
-              let digito = 0;
-              for (i = 0; i < (cedula.length() - 1); i++) {
-                  digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
-                  suma += ((digito % 10) + (digito / 10));
-              }
+      var cedulaCorrecta = new Boolean(true);
+            if (cedula.length() == 10) {
+                // Coeficientes de validación cédula
+                // El decimo digito se lo considera dígito verificador
+                let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+                let verificador = Integer.parseInt(cedula.substring(9, 10));
+                let suma = 0;
+                let digito;
+                for (let i = 0; i < (cedula.length() - 1); i++) {
+                    digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+                    suma += ((digito % 10) + (digito / 10));
+                }
 
-              ap_cedulaCorrecta = ((suma % 10 == 0 && verificador == 0) || (10 - suma % 10 == verificador));
-          } else {
-            ap_cedulaCorrecta = false;
-          }
-      } catch (error) {
-        ap_cedulaCorrecta = false;
-      }
-      return ap_cedulaCorrecta;
+                cedulaCorrecta = ((suma % 10 == 0 && verificador == 0) || (10 - suma % 10 == verificador));
+                return cedulaCorrecta = true;
+            } else {
+                cedulaCorrecta = false;
+            }
+
   }
   
 
