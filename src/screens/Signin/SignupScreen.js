@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput, Alert } from "react-native";
 import { colors } from "../../assets";
 import { Button, Gap } from "../../components/atoms";
+import { Header } from "../../components/molecules";
 
 import { AuthContext } from "../../components/context";
 
@@ -40,6 +41,15 @@ const SigninScreen = ({ route, navigation }) => {
     console.log('el email', esCorreoValido);
     console.log('la cedula', esCedulaValida);
     console.log('la contraseña', esContrasenaValida);
+
+    if (esCorreoValido && esContrasenaValida && esCedulaValida) {
+      const rta = signUp(username, email, password);
+      rta.then(console.log);
+      notifyMessage("Su usuario creado correctamente");
+      navigation.navigate("GetStarted");
+    } else {
+      notifyMessage("Datos invalidos");
+    }
   };
 
   //Validacion Correos
@@ -143,7 +153,8 @@ const SigninScreen = ({ route, navigation }) => {
 
   return (
     <View>
-      <Gap height={200} />
+      <Gap height={50} />
+      <Header onPressBack={() => navigation.navigate("GetStarted")} />
       <View style={styles.wrapperSlogan}>
         <Text style={styles.txtSlogan}>Crear Nuevo Usuario </Text>
       </View>
