@@ -30,10 +30,10 @@ const SigninScreen = ({ route, navigation }) => {
       console.log("Cedula Incorrecta");
     }
 
-    if (checkPassword(password)){
-      console.log("Contraseña Incorrecta");
+    if (ap_checkPassword(password)){
+      console.log("Cedula Correcta");
     }else{
-      console.log("Contraseña Correcta");
+      console.log("Contraseña Incorrecta");
     }
   };
 
@@ -113,14 +113,14 @@ const SigninScreen = ({ route, navigation }) => {
    }    
   }
 
-  function checkPassword(valor){
-    var myregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/; 
+  function ap_checkPassword(valor){
+    var myregex = /^(?=.[a-z])(?=.[A-Z])(?=.[~'!@#$%^&)(-+=]).{6,10}$/; 
    if(myregex.test(valor)){
       console.log(valor+" es valido :-) !");
        return true;        
    }else{
       console.log(valor+" NO es valido!");
-       return false;        
+      return false;        
    }   
  }
   
