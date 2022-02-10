@@ -20,6 +20,7 @@ const SigninScreen = ({ route, navigation }) => {
   const { signUp } = useContext(AuthContext);
 
   const [correos, setCorreos] = useState([])
+
   
   
   useEffect(() => {
