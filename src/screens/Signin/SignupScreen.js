@@ -45,7 +45,7 @@ const SigninScreen = ({ route, navigation }) => {
     if (esCorreoValido && esContrasenaValida && esCedulaValida) {
       const rta = signUp(username, email, password);
       rta.then(console.log);
-      notifyMessage("Su usuario creado correctamente");
+      notifyMessage("Su usuario fue creado correctamente");
       navigation.navigate("GetStarted");
     } else {
       notifyMessage("Datos invalidos");
@@ -177,7 +177,6 @@ const SigninScreen = ({ route, navigation }) => {
         placeholder="Constraseña"
         style={styles.input}
         onChangeText={(text) => setPassword(text)}
-        secureTextEntry
       />
 
       {isValidUser ? null : (

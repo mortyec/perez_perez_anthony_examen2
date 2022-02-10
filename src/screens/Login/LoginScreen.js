@@ -41,8 +41,9 @@ const Login = ({ navigation }) => {
       <Image source={IL_GetStarted_PNG} style={styles.image} />
 
       <View style={styles.wrapperSlogan}>
-        <Text style={styles.txtSlogan}>La compra del dia </Text>
-        <Text style={styles.txtSlogan}>en una APP</Text>
+        <Text style={styles.txtSlogan}>Microproductos</Text>
+        <Text style={styles.txtSlogan}>Correo: tony.anthony@hotmail.es </Text>
+        <Text style={styles.txtSlogan}>Contraseña: Ap.1234</Text>
       </View>
 
       <Gap height={30} />
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   image: { height: 225, width: "100%", resizeMode: "stretch" },
   wrapperSlogan: { marginTop: 51 },
   txtSlogan: {
-    fontSize: 30,
+    fontSize: 15,
     color: colors.primary,
     textAlign: "center",
   },
