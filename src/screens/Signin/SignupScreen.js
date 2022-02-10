@@ -29,9 +29,16 @@ const SigninScreen = ({ route, navigation }) => {
     }else{
       console.log("Cedula Incorrecta");
     }
+
+    if (checkPassword(password)){
+      console.log("Contraseña Incorrecta");
+    }else{
+      console.log("Contraseña Correcta");
+    }
   };
 
   function ap_validarCedula(cedula) {
+    var valida = true;
     if(cedula.length == 10){
         
       //Obtenemos el digito de la region que sonlos dos primeros digitos
@@ -88,19 +95,34 @@ const SigninScreen = ({ route, navigation }) => {
         //Validamos que el digito validador sea igual al de la cedula
         if(digito_validador == ultimo_digito){
           console.log('la cedula:' + cedula + ' es correcta');
+          return valida = true;
         }else{
           console.log('la cedula:' + cedula + ' es incorrecta');
+          return valida = false;
         }
         
       }else{
         // imprimimos en consola si la region no pertenece
         console.log('Esta cedula no pertenece a ninguna region');
+        return valida = false;
       }
    }else{
       //imprimimos en consola si la cedula tiene mas o menos de 10 digitos
       console.log('Esta cedula tiene menos de 10 Digitos');
+      return valida = false;
    }    
   }
+
+  function checkPassword(valor){
+    var myregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/; 
+   if(myregex.test(valor)){
+      console.log(valor+" es valido :-) !");
+       return true;        
+   }else{
+      console.log(valor+" NO es valido!");
+       return false;        
+   }   
+ }
   
 
   function notifyMessage(msg) {
